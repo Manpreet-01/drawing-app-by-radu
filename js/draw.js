@@ -15,3 +15,8 @@ draw.path=(ctx, path, color="black")=>{
 	ctx.stroke();
 }
 
+draw.paths=(ctx,paths,color="black")=>{
+	for(const path of paths){
+		draw.path(ctx, path, color);
+	}
+}
