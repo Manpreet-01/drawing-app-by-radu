@@ -45,7 +45,7 @@ class SketchPad{
 				// console.log(this.path.length)
 			}
 		}
-		this.canvas.onmouseup =()=>{
+		document.onmouseup =()=>{
 			this.isDrawing = false;
 		}
 		this.canvas.ontouchstart=(evt)=>{
@@ -56,7 +56,7 @@ class SketchPad{
 			const loc = evt.touches[0];
 			this.canvas.onmousemove(loc);
 		}
-		this.canvas.ontouchend=(evt)=>{
+		document.ontouchend=(evt)=>{
 			this.canvas.onmouseup();
 		}
 		this.undoBtn.onclick=()=>{
