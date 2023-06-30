@@ -6,16 +6,17 @@ utils.flaggedUsers = [
 	1664485938220,
 ];
 
-utils.styles = {
-	car: "grey",
-	fish: 'red',
-	house: 'yellow',
-	tree: 'green',
-	bicycle: 'cyan',
-	guitar: 'blue',
-	pencil: 'magenta',
-	clock: 'lightgrey',
-}
+utils.styles={
+   car:{color:'gray',text:'🚗'},
+   fish:{color:'red',text:'🐠'},
+   house:{color:'yellow',text:'🏠'},
+   // tree:{color:'green',text:'🌳'},	//radu tree emoji
+   tree:{color:'green',text:'🎄'},	// my bcz old is not showing in  my chrome
+   bicycle:{color:'cyan',text:'🚲'},
+   guitar:{color:'blue',text:'🎸'},
+   pencil:{color:'magenta',text:'✏️'},
+   clock:{color:'lightgray',text:'🕒'},
+};
 
 utils.formatPercent=(n)=>{
 	return (n*100).toFixed(2) + "%";
