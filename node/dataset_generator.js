@@ -31,7 +31,7 @@ fileNames.forEach(fn=>{
 			JSON.stringify(paths)
 		);
 		generateImageFile(
-			constants.IMAGE_DIR+'/'+id+'.png',
+			constants.IMG_DIR+'/'+id+'.png',
 			paths
 		);
 		
@@ -42,6 +42,11 @@ fileNames.forEach(fn=>{
 
 fs.writeFileSync(constants.SAMPLES, 
 	JSON.stringify(samples)
+);
+
+
+fs.writeFileSync(constants.SAMPLES_JS, 
+	"const samples =" + JSON.stringify(samples) + ";"
 );
 
 

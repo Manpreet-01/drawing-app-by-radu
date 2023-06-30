@@ -29,3 +29,34 @@ button:disabled:hover{
 	background-color: grey;
 	cursor: default;
 }
+.row{
+	display: flex;
+	align-items: center;
+}
+.thumb{
+	width: 100%;
+}
+.rowLabel{
+	flex: 1 1 0;			/* original value = 2 2 0 ; 451 mod */
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.sampleContainer{
+	flex: 1 1 0;
+	background-color: white;
+	text-align: center;
+	border-radius: 10%;
+	margin: 1px;
+	overflow: hidden;
+}
+.blur{
+	filter: blur(5px);
+}
+
+
+
+
+
+
+
