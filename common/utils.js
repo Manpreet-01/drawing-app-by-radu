@@ -6,6 +6,17 @@ utils.flaggedUsers = [
 	1664485938220,
 ];
 
+utils.styles = {
+	car: "grey",
+	fish: 'red',
+	house: 'yellow',
+	tree: 'green',
+	bicycle: 'cyan',
+	guitar: 'blue',
+	pencil: 'magenta',
+	clock: 'lightgrey',
+}
+
 utils.formatPercent=(n)=>{
 	return (n*100).toFixed(2) + "%";
 }
