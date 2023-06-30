@@ -58,6 +58,18 @@ button:disabled:hover{
 	background-color: yellow;
 }
 
+#container{
+	width:calc(100% - 400px);
+}
+
+#chartContainer{
+	position: fixed;
+	right: 0;
+	/* top: 50%; */
+	translate: (0, -50%);
+}
+
+
 
 
 
