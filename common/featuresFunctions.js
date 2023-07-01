@@ -6,7 +6,6 @@ featuresFunctions.getPathCount = (paths)=>{
 
 featuresFunctions.getPointCount = (paths)=>{
 	const points = paths.flat();
-	
 	return points.length;
 }
 
@@ -27,8 +26,11 @@ featuresFunctions.getHeight = (paths)=>{
 }
 
 featuresFunctions.inUse=[
-	{name: "Width", function: featuresFunctions.getWidth},
-	{name: "Height", function: featuresFunctions.getHeight},
+	{name: "Path Count", function: featuresFunctions.getPathCount},
+	{name: "Point Count", function: featuresFunctions.getPointCount},
+	// {name: "Width", function: featuresFunctions.getWidth},
+	// {name: "Height", function: featuresFunctions.getHeight},
+	
 ];
 
 if (typeof module !== 'undefined')
