@@ -51,8 +51,8 @@ function handleClick(sample, doScroll=true){
 		return;
 	}
 	
-	// [...document.querySelectorAll(".emphasize")].
-		// forEach((e)=>e.classList.remove('emphasize'));
+	[...document.querySelectorAll(".emphasize")].
+		forEach((e)=>e.classList.remove('emphasize'));
 			
 	el.classList.add("emphasize");
 	
@@ -64,4 +64,15 @@ function handleClick(sample, doScroll=true){
 	}
 	
 	chart.selectSample(sample);
+}
+
+
+function toggleInput(){
+	if(inputContainer.style.display == "none"){
+		inputContainer.style.display = "block";
+		sketchPad.triggerUpdate();
+	}else{
+		inputContainer.style.display = "none"
+		chart.hideDynamicPoint();
+	}
 }
