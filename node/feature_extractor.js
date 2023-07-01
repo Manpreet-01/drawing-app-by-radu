@@ -15,13 +15,17 @@ for(const sample of samples){
 		)
 	);
 
-	sample.point = [
-		featuresFunctions.getPathCount(paths),
-		featuresFunctions.getPointCount(paths),
-	]
+	// sample.point = [
+		// featuresFunctions.getPathCount(paths),
+		// featuresFunctions.getPointCount(paths),
+	// ]
+	
+	// alternate better way
+	const functions = featuresFunctions.inUse.map(f=>f.function);
+	sample.point = functions.map(f=>f(paths));
 }
 
-const featureNames = ["Path Count", "Point Count"];
+const featureNames = featuresFunctions.inUse.map(f=>f.name);
 
 fs.writeFileSync(constants.FEATURES,
 	JSON.stringify({
@@ -37,10 +41,12 @@ fs.writeFileSync(constants.FEATURES,
 
 	
 fs.writeFileSync(constants.FEATURES_JS, 
-	`const featuresFunctions = ${
+	`const features = ${
 		JSON.stringify({
 			featureNames,
 			samples,
 		})
 	};`
 );
+
+console.log("done");

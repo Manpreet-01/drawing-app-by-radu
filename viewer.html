@@ -65,10 +65,14 @@
 			"outline: 600px solid rgba(0,0,0, 0.7);" ;
 			
 		function onDrawingUpdate(paths){
-			const point = [
-				featuresFunctions.getPathCount(paths),
-				featuresFunctions.getPointCount(paths),
-			];
+			<!-- const point = [ -->
+				<!-- featuresFunctions.getPathCount(paths), -->
+				<!-- featuresFunctions.getPointCount(paths), -->
+			<!-- ]; -->
+			
+			<!-- alternate way -->
+			const functions = featuresFunctions.inUse.map(f=>f.function);
+			const point = functions.map(f=>f(paths));
 			
 			chart.showDynamicPoint(point);
 		}
