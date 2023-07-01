@@ -223,8 +223,8 @@ class Chart{
 	  	  
       const bounds={
          left:minX,
-         right:maxX + maxDelta,
-         top:maxY + maxDelta,
+         right:maxX,// + maxDelta,
+         top:maxY,// + maxDelta,
          bottom:minY
       };
       return bounds;
