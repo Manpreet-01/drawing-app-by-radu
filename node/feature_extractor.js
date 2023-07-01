@@ -19,9 +19,6 @@ for(const sample of samples){
 	sample.point = functions.map(f=>f(paths));
 }
 
-const minMax = utils.normalizePoints(
-	samples.map(s=>s.point)
-);
 
 const featureNames = featuresFunctions.inUse.map(f=>f.name);
 
@@ -41,6 +38,14 @@ for(let i=0; i<samples.length; i++){
 	}
 }
 
+
+const minMax = utils.normalizePoints(
+	training.map(s=>s.point)
+);
+
+utils.normalizePoints(
+	testing.map(s=>s.point), minMax
+);
 
 fs.writeFileSync(constants.TRAINING,
 	JSON.stringify({

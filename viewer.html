@@ -82,6 +82,7 @@
 		const sketchPad = new SketchPad(inputContainer, onDrawingUpdate);
 		sketchPad.canvas.style.cssText +=
 			"outline: 600px solid rgba(0,0,0, 0.7);" ;
+		toggleInput();
 			
 		function onDrawingUpdate(paths){
 			const functions = featuresFunctions.inUse.map(f=>f.function);
