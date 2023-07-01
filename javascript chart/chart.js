@@ -260,6 +260,7 @@ class Chart{
 		);
 		
 		graphics.drawPoint(ctx, pixelLoc, "rgba(255,255,255, 0.7)", 100000); //make it large as much as possible
+		ctx.strokeStyle = "grey";
 		
 		for(const sample of this.nearestSamples){
 			const point = math.remapPoint(

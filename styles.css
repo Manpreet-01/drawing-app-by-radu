@@ -55,7 +55,7 @@ button:disabled:hover{
 }
 
 .emphasize{
-	background-color: yellow;
+	background-color: yellow !important;
 }
 
 #container{
@@ -65,7 +65,7 @@ button:disabled:hover{
 #chartContainer{
 	position: fixed;
 	right: 0;
-	/* top: 50%; */
+	top: 15%;
 	translate: (0, -50%);
 }
 #inputContainer{
@@ -91,6 +91,10 @@ button:disabled:hover{
 	position: relative;	
 }
 
+#statistics{
+	font-size:	20px;
+	padding: 20px;
+}
 
 
 
