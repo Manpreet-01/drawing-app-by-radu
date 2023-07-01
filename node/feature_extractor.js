@@ -19,7 +19,7 @@ for(const sample of samples){
 	sample.point = functions.map(f=>f(paths));
 }
 
-utils.normalizePoints(
+const minMax = utils.normalizePoints(
 	samples.map(s=>s.point)
 );
 
@@ -46,6 +46,13 @@ fs.writeFileSync(constants.FEATURES_JS,
 		})
 	};`
 );
+
+fs.writeFileSync(constants.MIN_MAX_JS,
+	`const minMax = ${
+		JSON.stringify(minMax)
+	};`
+);
+
 
 console.log("done");
 // process.stdout.write("done")
