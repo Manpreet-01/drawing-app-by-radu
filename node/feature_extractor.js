@@ -25,6 +25,70 @@ const minMax = utils.normalizePoints(
 
 const featureNames = featuresFunctions.inUse.map(f=>f.name);
 
+
+// split files
+
+const trainingAmount = samples.length*0.5;
+
+const training = [];
+const testing = [];
+
+for(let i=0; i<samples.length; i++){
+	if(i<trainingAmount){
+		training.push(samples[i]);
+	}else{
+		testing.push(samples[i]);
+	}
+}
+
+
+fs.writeFileSync(constants.TRAINING,
+	JSON.stringify({
+		featureNames,
+		samples: training.map(s => {
+			return {
+				point: s.point,
+				label: s.label,
+			}
+		}),
+	})
+)
+
+fs.writeFileSync(constants.TRAINING_JS,
+	`const training = ${
+		JSON.stringify({
+			featureNames,
+			samples: training,
+		})
+	};`
+)
+
+
+
+fs.writeFileSync(constants.TESTING,
+	JSON.stringify({
+		featureNames,
+		samples: testing.map(s => {
+			return {
+				point: s.point,
+				label: s.label,
+			}
+		}),
+	})
+)
+
+
+fs.writeFileSync(constants.TESTING_JS,
+	`const testing = ${
+		JSON.stringify({
+			featureNames,
+			samples: testing,
+		})
+	};`
+)
+
+
+
 fs.writeFileSync(constants.FEATURES,
 	JSON.stringify({
 		featureNames,
@@ -54,5 +118,4 @@ fs.writeFileSync(constants.MIN_MAX_JS,
 );
 
 
-console.log("done");
-// process.stdout.write("done")
+process.stdout.write("done.\n");
