@@ -217,10 +217,14 @@ class Chart{
       const maxX=Math.max(...x);
       const minY=Math.min(...y);
       const maxY=Math.max(...y);
+	  const deltaX = maxX - minX; // as a diff of x
+	  const deltaY = maxY - minY;
+	  const maxDelta = Math.max(deltaX, deltaY);
+	  	  
       const bounds={
          left:minX,
-         right:maxX,
-         top:maxY,
+         right:maxX + maxDelta,
+         top:maxY + maxDelta,
          bottom:minY
       };
       return bounds;
@@ -257,7 +261,7 @@ class Chart{
 		
 		graphics.drawPoint(ctx, pixelLoc, "rgba(255,255,255, 0.7)", 100000); //make it large as much as possible
 		
-		ctx.beginPath();
+		ctx.beginPath();	//draw line
 		ctx.moveTo(...pixelLoc);
 		ctx.lineTo(...math.remapPoint(
 			this.dataBounds,
