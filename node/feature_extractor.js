@@ -1,6 +1,6 @@
 const constants = require('../common/constants.js');
 const featuresFunctions =  require('../common/featuresFunctions.js');
-
+const utils =  require('../common/utils.js');
 
 const fs = require('fs');
 
@@ -15,15 +15,13 @@ for(const sample of samples){
 		)
 	);
 
-	// sample.point = [
-		// featuresFunctions.getPathCount(paths),
-		// featuresFunctions.getPointCount(paths),
-	// ]
-	
-	// alternate better way
 	const functions = featuresFunctions.inUse.map(f=>f.function);
 	sample.point = functions.map(f=>f(paths));
 }
+
+utils.normalizePoints(
+	samples.map(s=>s.point)
+);
 
 const featureNames = featuresFunctions.inUse.map(f=>f.name);
 
@@ -50,3 +48,4 @@ fs.writeFileSync(constants.FEATURES_JS,
 );
 
 console.log("done");
+// process.stdout.write("done")
