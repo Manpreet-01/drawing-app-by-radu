@@ -32,3 +32,65 @@ console.log("Accuracy : " +
    utils.formatPercent(correctCount/totalCount)+
    ")"
 );
+
+
+
+console.log("generating decision boundary......");
+
+const {createCanvas} = require("canvas");
+const canvas = createCanvas(100, 100);
+const ctx = canvas.getContext("2d");
+
+// pixel based plot each pixel is used as a feature
+//and we color the pixel depending on predicted value
+
+for(let x=0; x<canvas.width; x++){
+	for(let y=0; y<canvas.height; y++){
+		const point = [
+			x/canvas.width,
+			1-y/canvas.height,
+		]
+		
+		const {label} = kNN.predict(point);
+		const color = utils.styles[label].color;
+		
+		ctx.fillStyle = color;
+		ctx.fillRect(x,y,1,1);  //1 by 1 pixel rect acts as a point
+	}
+}
+
+
+const buffer = canvas.toBuffer("image/png");
+fs.writeFileSync(constants.DESISION_BOUNDARY, buffer);
+console.log("done");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
