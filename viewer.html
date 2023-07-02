@@ -28,6 +28,7 @@
 		<script src="./common/utils.js"></script>
 		<script src="./common/draw.js"></script>
 		<script src="./common/featuresFunctions.js"></script>
+		<script src="./common/classifiers/knn.js"></script>
 		
 		<script src="./js/display.js"></script>
 		<script src="./js/sketchPad.js"></script>
@@ -48,11 +49,12 @@
 		let totalCount = 0;
 		
 		const k = 50;  //k nearest neighbor
+		const kNN = new KNN(trainingSamples, k);
 		
 		for(const testSample of testingSamples){
 			testSample.truth = testSample.label;
 			testSample.label = "?";
-			const {label} = classify(testSample.point); // try to guess the label by classify label
+			const {label} = kNN.predict(testSample.point); // try to guess the label by classify label
 			testSample.label = label;
 			
 			testSample.correct = testSample.label === testSample.truth;
@@ -112,27 +114,11 @@
 			
 			utils.normalizePoints([point], minMax);
 			
-			const {label, nearestSamples} = classify(point);
+			const {label, nearestSamples} = kNN.predict(point);
 			
 			predictedLabelContainer.innerHTML = "Is it a " + label + " ?";
 			
 			chart.showDynamicPoint(point, label, nearestSamples);
-		}
-		
-		function classify(point){
-			const samplePoints = trainingSamples.map(s=>s.point);
-			const indices = utils.getNearest(point, samplePoints, k);
-			const nearestSamples = indices.map(i=>trainingSamples[i]);
-			const labels = nearestSamples.map(s=>s.label);
-			
-			const counts = {}
-			for(const label of labels){
-				counts[label] = counts[label] ? counts[label]+1 : 1  ;
-			}
-			const max = Math.max(...Object.values(counts));
-			const label = labels.find(l=>counts[l]==max);
-			
-			return {label, nearestSamples};
 		}
 		</script>
 		
