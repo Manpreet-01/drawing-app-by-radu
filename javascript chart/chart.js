@@ -5,6 +5,7 @@ class Chart{
       this.axesLabels=options.axesLabels;
       this.styles=options.styles;
       this.icon=options.icon;
+	  this.bg = options.bg;
       this.onClick=onClick;
 
       this.canvas=document.createElement("canvas");
@@ -14,6 +15,7 @@ class Chart{
       container.appendChild(this.canvas);
 
       this.ctx=this.canvas.getContext("2d");
+      this.ctx.imageSmoothingEnabled=false;
 
       this.margin=options.size*0.11;
       this.transparency=options.transparency||1;
@@ -233,6 +235,21 @@ class Chart{
    #draw(){
       const {ctx,canvas}=this;
       ctx.clearRect(0,0,canvas.width,canvas.height);
+	  
+	  const topLeft = math.remapPoint(
+        this.dataBounds,
+        this.pixelBounds,
+        [0, 1]
+	  );
+      
+       //size =  both side margin subtracted
+      const sz = (canvas.width-this.margin*2)/
+      this.dataTrans.scale**2;
+      
+      ctx.drawImage(this.bg, ...topLeft, sz, sz);
+
+// to turn off hovered sample & sample add multiline comment 2 locations below ->
+// /*
 
       ctx.globalAlpha=this.transparency;
       this.#drawSamples(this.samples);
@@ -249,6 +266,8 @@ class Chart{
             this.selectedSample,"yellow"
          );
       }
+      
+// */ // till this line
 
 	if(this.dynamicPoint){
 		const {point, label} = this.dynamicPoint;
@@ -258,8 +277,10 @@ class Chart{
 			point,
 			
 		);
-		
-		graphics.drawPoint(ctx, pixelLoc, "rgba(255,255,255, 0.7)", 100000); //make it large as much as possible
+
+// to turn off hovered sample & sample turn on comment ->
+// /*
+        graphics.drawPoint(ctx, pixelLoc, "rgba(255,255,255, 0.7)", 100000); //make it large as much as possible
 		ctx.strokeStyle = "grey";
 		
 		for(const sample of this.nearestSamples){
@@ -273,6 +294,9 @@ class Chart{
 			ctx.lineTo(...point);
 			ctx.stroke();
 		}
+
+// */ // till here
+
 		graphics.drawImage(ctx,
 			this.styles[label].image,
 			pixelLoc

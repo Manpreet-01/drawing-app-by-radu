@@ -38,7 +38,7 @@ console.log("Accuracy : " +
 console.log("generating decision boundary......");
 
 const {createCanvas} = require("canvas");
-const canvas = createCanvas(100, 100);
+const canvas = createCanvas(200, 200);
 const ctx = canvas.getContext("2d");
 
 // pixel based plot each pixel is used as a feature
@@ -61,7 +61,7 @@ for(let x=0; x<canvas.width; x++){
 
 
 const buffer = canvas.toBuffer("image/png");
-fs.writeFileSync(constants.DESISION_BOUNDARY, buffer);
+fs.writeFileSync(constants.DECISION_BOUNDARY, buffer);
 console.log("done");
 
 

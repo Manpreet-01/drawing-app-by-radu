@@ -92,9 +92,12 @@
 			styles: utils.styles,
 			transparency: 0.9,
 			icon: "image",
+			bg: new Image(),
 		};
 		
-		graphics.generateImages(utils.styles);
+		options.bg.src = constants.DECISION_BOUNDARY2  // chart bg img src
+
+        graphics.generateImages(utils.styles);
 		
 		const chart = new Chart(
 			chartContainer,
